@@ -7,7 +7,8 @@ function verify (hexAddress, netId, base32Address) {
   }
 
   const hexBuffer = Buffer.from(hexAddress, 'hex')
-  expect(conflux_addr.encode(hexBuffer, netId, verbose)).toBe(base32Address)
+  const hexBufferUint8Array = new Uint8Array(hexBuffer);
+  [hexBuffer, hexBufferUint8Array].forEach(buf => expect(conflux_addr.encode(buf, netId, verbose)).toBe(base32Address))
   expect(conflux_addr.decode(base32Address).hexAddress).toStrictEqual(hexBuffer)
   expect(conflux_addr.decode(base32Address).netId).toBe(netId)
   if (verbose) {
