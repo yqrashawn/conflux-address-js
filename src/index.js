@@ -147,4 +147,4 @@ function decode(address) {
   return returnValue;
 }
 
-module.exports = { decode: decode, encode: encode };
+module.exports = { decode: decode, encode: encode, encodeNetId };
